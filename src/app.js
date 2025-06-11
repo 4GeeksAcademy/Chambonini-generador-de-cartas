@@ -1,11 +1,31 @@
-import "bootstrap";
-import "./style.css";
+const suits = ['♥', '♦', '♣', '♠'];
+const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
+function getRandomElement(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
 
-import "./assets/img/rigo-baby.jpg";
-import "./assets/img/4geeks.ico";
+function generateCard() {
+  const suit = getRandomElement(suits);
+  const value = getRandomElement(values);
+  const isRed = suit === '♥' || suit === '♦';
 
-window.onload = function() {
-  //write your code here
-  console.log("Hello Rigo from the console!");
-};
+  // Elementos DOM
+  document.getElementById('cardValue').textContent = value;
+  document.getElementById('topSuit').textContent = suit;
+  document.getElementById('bottomSuit').textContent = suit;
+
+  // Color del símbolo
+  const top = document.getElementById('topSuit');
+  const bottom = document.getElementById('bottomSuit');
+
+  if (isRed) {
+    top.classList.add('red');
+    bottom.classList.add('red');
+  } else {
+    top.classList.remove('red');
+    bottom.classList.remove('red');
+  }
+}
+
+generateCard();
